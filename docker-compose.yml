@@ -10,7 +10,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
     environment:
-      - SELHUB="selenium_hub"
+      - SELHUB=selenium_hub
 
   selenium-hub:
     image: selenium/hub:3.141.59-zirconium
