@@ -13,12 +13,13 @@ services:
       - SELHUB=selenium-hub
 
   selenium-hub:
-    image: selenium/hub:3.141.59-zirconium
+    image: selenium/hub
     container_name: selenium-hub
     ports:
       - "4444:4444"
+
   chrome:
-    image: selenium/node-chrome:3.141.59-zirconium
+    image: selenium/node-chrome-debug:3.141.59-oxygen
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
@@ -26,9 +27,12 @@ services:
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444
+    ports:
+      - "5555"
+      - "5900:5900"
 
   firefox:
-    image: selenium/node-firefox:3.141.59-zirconium
+    image: selenium/node-firefox-debug:3.141.59-zirconium
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
@@ -36,3 +40,6 @@ services:
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444
+    ports:
+      - "5556"
+      - "5901:5900"
